@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan - Oral Lesion</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="scan.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="sticky-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="gradient-text">Oral Lesion</span>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="how-it-works.html">How It Works</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+       
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu">
+      <div class="container">
+        <a href="how-it-works.html">How It Works</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+  <section class="page-header">
+    <div class="container">
+      <h1>Oral Lesion Scanner</h1>
+      <p>Take a photo or upload an image of your oral cavity for AI-powered analysis</p>
+    </div>
+  </section>
+
+  <section class="scan-section">
+    <div class="container">
+      <div class="scan-options">
+        <button class="scan-option active" data-option="camera">
+          <i class="fas fa-camera"></i>
+          <span>Camera</span>
+        </button>
+        <button class="scan-option" data-option="upload">
+          <i class="fas fa-upload"></i>
+          <span>Upload</span>
+        </button>
+      </div>
+
+      <!-- Camera Option -->
+      <div id="camera-content" class="scan-content active">
+        <div class="camera-container">
+          <div id="camera-view" class="camera-view">
+            <div class="camera-placeholder">
+              <i class="fas fa-camera"></i>
+              <p>Camera preview will appear here</p>
+              <p>For best results, ensure good lighting and keep your device stable</p>
+            </div>
+            <video id="camera-stream" autoplay playsinline></video>
+            <canvas id="camera-canvas" style="display: none;"></canvas>
+            <div class="camera-guide-overlay">
+              <div class="guide-circle"></div>
+            </div>
+          </div>
+          <div class="camera-controls">
+            <button id="start-camera" class="camera-button">
+              <i class="fas fa-power-off"></i> Start Camera
+            </button>
+            <button id="take-photo" class="camera-button" disabled>
+              <i class="fas fa-camera"></i> Take Photo
+            </button>
+            <button id="switch-camera" class="camera-button" disabled>
+              <i class="fas fa-sync-alt"></i> Switch Camera
+            </button>
+          </div>
+        </div>
+
+        <div class="scan-instructions">
+          <h3>How to take a good photo</h3>
+          <ul>
+            <li><i class="fas fa-lightbulb"></i> Ensure good lighting - natural light is best</li>
+            <li><i class="fas fa-arrows-alt"></i> Position the area of concern within the circle</li>
+            <li><i class="fas fa-hand-rock"></i> Hold your device steady to avoid blur</li>
+            <li><i class="fas fa-ruler-combined"></i> Keep a consistent distance (about 6-8 inches)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Upload Option -->
+      <div id="upload-content" class="scan-content">
+        <div class="upload-container">
+          <div id="upload-area">
+            <div class="upload-placeholder">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag & drop your image here</p>
+              <p>or</p>
+              <button class="browse-button">Browse Files</button>
+              <input id="file-input" type="file" accept="image/*" class="file-input">
+            </div>
+            <div id="image-preview" class="upload-preview">
+              <img id="preview-image" src="#" alt="Uploaded image">
+              <button id="remove-image" class="remove-image">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="scan-instructions">
+          <h3>Image requirements</h3>
+          <ul>
+            <li><i class="fas fa-image"></i> Clear, in-focus image of the oral cavity</li>
+            <li><i class="fas fa-lightbulb"></i> Well-lit, without shadows or glare</li>
+            <li><i class="fas fa-file-image"></i> JPEG, PNG or GIF format</li>
+            <li><i class="fas fa-weight"></i> Maximum file size: 5MB</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Analysis Button -->
+      <div class="analysis-section">
+        <button id="analyze-button" class="analyze-button" disabled>
+          <i class="fas fa-microscope"></i> Analyze Image
+        </button>
+
+        <!-- Analysis Results -->
+        <div id="analysis-results" class="analysis-results">
+          <div class="results-header">
+            <h3>Analysis Results</h3>
+            <span class="processing-time">Processed in 1.2 seconds</span>
+          </div>
+
+          <div class="result-summary">
+            <div class="result-icon">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="result-message">
+              <h4>Possible indication detected</h4>
+              <p>Our AI has identified patterns that may require professional attention.</p>
+            </div>
+          </div>
+
+          <div class="result-details">
+            <div class="detail-item">
+              <div class="detail-label">Condition</div>
+              <div class="detail-value">Leukoplakia (possible)</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Confidence</div>
+              <div class="detail-value">72% match with known patterns</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Location</div>
+              <div class="detail-value">Buccal mucosa (inner cheek)</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Recommendation</div>
+              <div class="detail-value">Consult with a healthcare professional</div>
+            </div>
+          </div>
+
+          <!-- Contact Experts Section -->
+          <div id="contact-experts" class="contact-experts">
+            <h3 class="experts-heading">Would you like expert guidance?</h3>
+            <p class="experts-description">Connect with our medical experts for professional advice about your results.</p>
+            
+            <div class="expert-options">
+              <button class="expert-btn" data-contact="call">
+                <i class="fas fa-phone-alt"></i>
+                <span>Call Expert</span>
+              </button>
+              
+              <button class="expert-btn" data-contact="chat">
+                <i class="fas fa-comments"></i>
+                <span>Chat Now</span>
+              </button>
+              
+              <button class="expert-btn" data-contact="email">
+                <i class="fas fa-envelope"></i>
+                <span>Email Inquiry</span>
+              </button>
+              
+              <button class="expert-btn" data-contact="appointment">
+                <i class="fas fa-calendar-check"></i>
+                <span>Book Appointment</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="result-disclaimer">
+            <p>
+              <i class="fas fa-exclamation-triangle"></i> 
+              <strong>Important:</strong> This is an automated analysis and should not be considered as a medical diagnosis. Always consult with a healthcare professional for proper diagnosis and treatment.
+            </p>
+          </div>
+
+          <div class="result-actions">
+            <button id="save-results" class="btn btn-outline">
+              <i class="fas fa-download"></i> Save Results
+            </button>
+            <button id="new-scan" class="btn btn-primary">
+              <i class="fas fa-redo"></i> New Scan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="help-section">
+    <div class="container">
+      <div class="help-content">
+        <h2>Need more guidance?</h2>
+        <p>Our team of oral health specialists is ready to help you understand your results and provide personalized advice.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Our Team</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OralVision</h3>
+          <p>Advancing oral cancer detection through AI-powered image analysis for early diagnosis.</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <ul class="contact-info">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>
+                GM University<br>
+                P.B. Road, Davanagere<br>
+                Davangere - 577006<br>
+                Karnataka
+              </span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:info@gmu.ac.in">info@gmu.ac.in</a>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <a href="tel:+919611818058">9611818058</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Working Hours</h3>
+          <ul class="hours">
+            <li><span>Monday - Friday:</span> <span>9:00 AM - 5:00 PM</span></li>
+            <li><span>Saturday:</span> <span>9:00 AM - 1:00 PM</span></li>
+            <li><span>Sunday:</span> <span>Closed</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 OralVision, GM University. All rights reserved.</p>
+        <a href="https://gmu.ac.in" target="_blank" rel="noopener noreferrer" class="university-link">
+          Visit GM University <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="scan.js"></script>
+</body>
+</html>
+
+
+
+

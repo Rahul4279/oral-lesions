@@ -1,0 +1,484 @@
+
+/* Scan Page Specific Styles */
+
+.scan-section {
+  padding: 2rem 0 4rem;
+  background-color: var(--background-light);
+}
+
+.scan-options {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.scan-option {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.scan-option i {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.scan-option span {
+  font-weight: 500;
+}
+
+.scan-option:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.scan-option.active {
+  border-bottom: 3px solid var(--medical-500);
+}
+
+.scan-option.active i,
+.scan-option.active span {
+  color: var(--medical-600);
+}
+
+.scan-content {
+  display: none;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.scan-content.active {
+  display: block;
+}
+
+/* Camera Option Styles */
+.camera-container {
+  background-color: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.camera-view {
+  aspect-ratio: 4 / 3;
+  background-color: #f0f0f0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.camera-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+}
+
+.camera-placeholder i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.camera-guide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.guide-circle {
+  width: 60%;
+  height: 60%;
+  border: 2px dashed rgba(14, 165, 233, 0.5);
+  border-radius: 50%;
+}
+
+.camera-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.camera-button {
+  background-color: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.camera-button:hover:not(:disabled) {
+  background-color: var(--secondary);
+}
+
+.camera-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.camera-button i {
+  font-size: 1rem;
+}
+
+#take-photo i {
+  color: var(--medical-600);
+}
+
+#camera-stream.active {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Upload Option Styles */
+.upload-container {
+  background-color: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.upload-placeholder {
+  aspect-ratio: 16 / 9;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(14, 165, 233, 0.05) 10px,
+    rgba(14, 165, 233, 0.05) 20px
+  );
+}
+
+.upload-placeholder:hover {
+  border-color: var(--medical-500);
+  background-color: rgba(14, 165, 233, 0.05);
+}
+
+.upload-placeholder i {
+  font-size: 3rem;
+  color: var(--medical-500);
+  margin-bottom: 1rem;
+}
+
+.upload-placeholder p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.browse-button {
+  background-color: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.browse-button:hover {
+  background-color: var(--secondary);
+}
+
+.upload-preview {
+  display: none;
+  position: relative;
+}
+
+.upload-preview.active {
+  display: block;
+}
+
+.upload-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: contain;
+  max-height: 400px;
+}
+
+.remove-image {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.remove-image:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Scan Instructions */
+.scan-instructions {
+  background-color: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.scan-instructions h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.scan-instructions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scan-instructions li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.scan-instructions li i {
+  color: var(--medical-500);
+  font-size: 1.25rem;
+  width: 1.5rem;
+  text-align: center;
+}
+
+/* Analysis Section */
+.analysis-section {
+  max-width: 48rem;
+  margin: 2rem auto;
+}
+
+.analyze-button {
+  width: 100%;
+  background-color: var(--medical-600);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.analyze-button:hover:not(:disabled) {
+  background-color: var(--medical-700);
+}
+
+.analyze-button:disabled {
+  background-color: var(--medical-600);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.analyze-button i {
+  font-size: 1.25rem;
+}
+
+.analysis-results {
+  display: none;
+  background-color: white;
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-results.active {
+  display: block;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.processing-time {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.result-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f0fdf4;
+  border-radius: var(--radius);
+  border-left: 4px solid #22c55e;
+}
+
+.result-icon i {
+  font-size: 2.5rem;
+  color: #22c55e;
+}
+
+.result-message h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.result-message p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.result-details {
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+
+.detail-label {
+  width: 40%;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  width: 60%;
+}
+
+.result-disclaimer {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #fff8f1;
+  border-radius: var(--radius);
+  border: 1px solid #fdba74;
+  font-size: 0.875rem;
+}
+
+.result-disclaimer p {
+  margin: 0;
+}
+
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Help Section */
+.help-section {
+  background-color: var(--medical-50);
+  padding: 3rem 0;
+}
+
+.help-content {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.help-content h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.help-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* Page Header */
+.page-header {
+  background-color: var(--medical-50);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .camera-controls {
+    justify-content: space-between;
+  }
+
+  .result-actions {
+    justify-content: flex-end;
+  }
+}
